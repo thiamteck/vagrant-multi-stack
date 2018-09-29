@@ -16,6 +16,7 @@ Vagrant.configure("2") do |config|
   config.vm.network "forwarded_port", host: 8080, guest: 8080 # tomcat
   config.vm.network "forwarded_port", host: 61616, guest: 61616 # activemq
   config.vm.network "forwarded_port", host: 8161, guest: 8161 # activemq admin web
+  config.vm.network "forwarded_port", host: 6379, guest: 6379 # redis
 
   config.vm.provision "install-packages",
     type: "shell",
@@ -51,6 +52,11 @@ Vagrant.configure("2") do |config|
     type: "shell",
     preserve_order: true,
     path: "./installation_scripts/install_python36.sh"
+
+  config.vm.provision "install-redis32",
+    type: "shell",
+    preserve_order: true,
+    path: "./installation_scripts/install_redis32.sh"
 
   # TODO : Consul setup
   # TODO : add entry to /etc/hosts file

@@ -15,4 +15,5 @@ Vagrant box that come with multiple development stack and utilities.
 - NodeJS 8.12
 - Python 2.7, Python 3.6
 - Haproxy
+- Redis 3.2 (from [Software Collections](https://www.softwarecollections.org/))
 - Git client, SVN Client
