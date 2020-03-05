@@ -7,8 +7,8 @@
 # you're doing.
 Vagrant.configure("2") do |config|
 
-  config.vm.box = "bento/centos-7"
-  config.vm.box_version = "201808.24.0"
+  config.vm.box = "bento/centos-7.7"
+  config.vm.box_version = "202002.04.0"
 
   config.vbguest.auto_update = true
 
@@ -22,7 +22,6 @@ Vagrant.configure("2") do |config|
     type: "shell",
     preserve_order: true,
     path: "./installation_scripts/install_packages.sh"
-
 
   config.vm.provision "install-jdk8",
     type: "shell",
@@ -40,23 +39,20 @@ Vagrant.configure("2") do |config|
     type: "shell",
     preserve_order: true,
     path: "./installation_scripts/install_activemq.sh"
-
-
-  config.vm.provision "install-nodejs",
+  config.vm.provision "install-nvm-node",
     type: "shell",
+    privileged: false, # so it dont install as root
     preserve_order: true,
-    path: "./installation_scripts/install_nodejs8.sh"
-
-
+    path: "./installation_scripts/install_nvm_node.sh"
   config.vm.provision "install-python36",
     type: "shell",
     preserve_order: true,
     path: "./installation_scripts/install_python36.sh"
 
-  config.vm.provision "install-redis32",
+  config.vm.provision "install-redis5",
     type: "shell",
     preserve_order: true,
-    path: "./installation_scripts/install_redis32.sh"
+    path: "./installation_scripts/install_redis5.sh"
 
   # TODO : Consul setup
   # TODO : add entry to /etc/hosts file
